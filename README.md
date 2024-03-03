@@ -18,7 +18,7 @@ cd Hack2024
 #### Frontend Setup
 
 ```
-cd hack2024
+cd placetoplace
 npm install
 npm run dev
 ```
@@ -26,7 +26,9 @@ npm run dev
 #### Backend Setup
 - insert instruction
 ```
-insert code 
+cd placetoplace backend
+npm install
+npm run dev
 ```
 
 
