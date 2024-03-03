@@ -29,9 +29,11 @@ insert code
 
 ## Contributors
 
-- [Kevin Espinas](https://github.com/kesdlvi)
-- [Jason Lozada](https://github.com/jasonlozada)
+- [Brandon Kim](https://github.com/br11ndnn)
 - [Jacqueline Nguyen](https://github.com/itsjacque) 
-- [Brandom Kim](https://github.com/)
+- [Jason Lozada](https://github.com/jasonlozada)
+- [Kevin Espinas](https://github.com/kesdlvi)
+
+
 
 ## Resources Used
