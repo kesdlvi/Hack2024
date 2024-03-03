@@ -9,10 +9,7 @@
 .regions{
     display:flex;
 }
-/* .names{
-    display:flex;
-} */
 
 .region-filter{
     display: flex;
-}
+} 
