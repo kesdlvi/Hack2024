@@ -1,0 +1,18 @@
+.img {
+    border-radius: 20px;
+    padding: none;
+    width: 200px; 
+    height: 200px;
+    display:flex;
+}
+
+.regions{
+    display:flex;
+}
+/* .names{
+    display:flex;
+} */
+
+.region-filter{
+    display: flex;
+}
