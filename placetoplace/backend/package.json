@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "dev": "nodemon server"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kesdlvi/Hack2024.git"
+  },
+  "author": "Brandon Kim, Jacqueline Nguyen, Jason Lozada, Kevin Espinas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kesdlvi/Hack2024/issues"
+  },
+  "homepage": "https://github.com/kesdlvi/Hack2024#readme",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}

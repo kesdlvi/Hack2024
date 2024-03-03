@@ -1,4 +1,4 @@
-# Hack2024 [insert app name]
+# Place to Place (PTP)
 
 (insert description here)
 
@@ -13,10 +13,14 @@ cd Hack2024
 
 ## Run Locally 
 
+
+
 #### Frontend Setup
-- insert instruction
+
 ```
-insert code 
+cd hack2024
+npm install
+npm run dev
 ```
 
 #### Backend Setup
