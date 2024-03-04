@@ -23,6 +23,13 @@ npm install
 npm run dev
 ```
 
+### API key
+In both .mjs files input the API key
+```
+"bxIQZnxwuFOBAZFPnM6ZT3BlbkFJyKPl3DpVbEFUxgp10V7k"
+```
+but place 'sk-' before the first letter
+
 #### Backend Setup
 - insert instruction
 ```
