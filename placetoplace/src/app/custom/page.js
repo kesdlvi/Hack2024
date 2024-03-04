@@ -30,24 +30,7 @@ const CustomPage = () => {
     const handleCountryChange = (event) => {
         setCountry(event.target.value); // Update the country state with input value
     };
-    const renderData = (data) => {
-        return Object.entries(data).map(([key, value]) => {
-          if (typeof value === 'object') {
-            return (
-              <div key={key}>
-                <h3>{key}</h3>
-                {renderData(value)}
-              </div>
-            );
-          } else {
-            return (
-              <div key={key}>
-                <strong>{key}:</strong> {value}
-              </div>
-            );
-          }
-        });
-      };
+    
       if(response && getInfo) {
         setInfoArray(response[1].split(/\d+\./).filter(Boolean));
         setTravelArray(response[2].split(/\d+\./).filter(Boolean));

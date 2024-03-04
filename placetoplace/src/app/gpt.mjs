@@ -4,7 +4,7 @@ import OpenAI from 'openai';
 let responses = []
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "",
   dangerouslyAllowBrowser: true
 });
 
