@@ -23,10 +23,22 @@ text-decoration: underline;
 margin: 0 0 1rem;
 line-height: 1.15;
 font-size: 3.6rem;
+padding-top: 20px;
 }
 
 .title {
 text-align: center;
+}
+
+.title-color {
+    /* Your existing styles */
+    transition: color 0.3s ease-in-out; /* Add transition property for color change */
+}
+
+.title-color:hover {
+    /* color: #033446; */
+    /* color: #73A5A6; */
+    color: #1F5B68;
 }
 
 .title,

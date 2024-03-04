@@ -1,17 +1,30 @@
 import { useState } from "react";
+import Typewriter from 'typewriter-effect';
 import gptTrip from "../gpt.mjs";
+import styles from '../(styles)/Home.modules.css'
+
 const CustomPage = () => {
     const [response, setResponse] = useState(null);
     const [country, setCountry] = useState("");
     const [tripTime, setTripTime] = useState(null);
     const [isLoading, setIsLoading] = useState(false); 
+    const [itinerary, showItinerary] = useState(false);
+    const [info, setShowInfo] = useState(false);
+    const [travelTips, setTravelTips] = useState(false);
+    const [getInfo, setGetInfo] = useState(false);
+    
+    //States for arrays
+    const [infoArray, setInfoArray] = useState(null);
+    const [travelArray, setTravelArray] = useState(null);
+    const [foodArray, setFoodArray] = useState(null);
 
     // Function to handle planning trip
     const planTrip = async () => {
         setIsLoading(true); // Set loading state to true
-        const tripResponse = await gptTrip(country); // Call gptTrip function
+        const tripResponse = await gptTrip(country, tripTime); // Call gptTrip function
         setResponse(tripResponse); // Set the response to state
         setIsLoading(false); // Set loading state to false
+        setGetInfo(true); // Set loading state to false
     };
 
     const handleCountryChange = (event) => {
@@ -35,6 +48,15 @@ const CustomPage = () => {
           }
         });
       };
+      if(response && getInfo) {
+        setInfoArray(response[1].split(/\d+\./).filter(Boolean));
+        setTravelArray(response[2].split(/\d+\./).filter(Boolean));
+        setFoodArray(response[3].split(/\d+\./).filter(Boolean));
+        setGetInfo(false)
+      }
+      const handleTripTimeChange = (event) => {
+        setTripTime(event.target.value); // Update the trip time state with selected value
+    };
 
     return (
         <div className="container mx-auto px-4 flex flex-col items-center">
@@ -51,19 +73,17 @@ const CustomPage = () => {
                         />
                         
                     </div>
-                    <div className="mt-4">
-                        <h3 className="text-xl font-semibold">City?</h3>
-                        <input type="text" className="mt-2 p-2 border border-gray-300 rounded-md" />
-                    </div>
                     <div>
                         <h3 className="text-xl font-semibold">Length of trip</h3>
                         <select 
                             className="mt-2 p-2 border border-gray-300 rounded-md"
                             style={{color: "black"}}
+                            value={tripTime} 
+                            onChange={handleTripTimeChange} 
                         >
-                            <option value="1">Less than a week</option>
-                            <option value="1">A week</option>
-                            <option value="1">More than a week</option> 
+                            <option value="Less">Less than a week</option>
+                            <option value="Exact">A week</option>
+                            <option value="More">More than a week</option> 
                         </select>
                     </div>
                     <button 
@@ -77,16 +97,66 @@ const CustomPage = () => {
             {response && (
                 <div>
                     <div>
-                        <h1>Your Trip to {country}</h1>
-                        {response[0]}
+                        <h1 className={`text-lg font-bold mt-4 title ${styles.fade}`}>Your Trip to {country}</h1>
+                            <div>
+                                <Typewriter
+                                    options={{
+                                    strings: response[0],
+                                    autoStart: true,
+                                    loop: false,
+                                    }}
+                                />
+                            </div>
+                        
                     </div>
                     <div>
-                        <h1>Information</h1>
-                        {response[1]}
+                        <h1 
+                            className={`text-lg font-bold mt-4 title title-color ${styles.fade}`}
+                            onClick={()=> setShowInfo(!info)}
+                            style={{cursor:"pointer"}}
+                        >
+                            Information
+                        </h1>
+                        {info && (
+                            <div>
+                                <ul>
+                                    {infoArray.map((sentence, index) => (
+                                    <li key={index} className="mb-2">{sentence.trim()}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                            
                     </div>
                     <div>
-                        <h1>Make the most of your trip</h1>
-                        {response[2]}
+                        <h1 
+                            className={`text-lg font-bold mt-4 title title-color ${styles.fade}`}
+                            onClick={()=> setTravelTips(!travelTips)}
+                            style={{cursor:"pointer"}}
+                        >
+                            Make the most of your trip
+                        </h1>
+                        
+                        {travelTips && (
+                            <div>
+                                <h1 style={{fontSize:"2rem"}}>Travel Tips</h1>
+                                    <div>
+                                        <ul>
+                                            {travelArray.map((sentence, index) => (
+                                            <li key={index} className="mb-2">{sentence.trim()}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                <h1 style={{fontSize:"2rem"}} >Food Recccomendations</h1>
+                                    <div>
+                                        <ul>
+                                            {foodArray.map((sentence, index) => (
+                                            <li key={index} className="mb-2">{sentence.trim()}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

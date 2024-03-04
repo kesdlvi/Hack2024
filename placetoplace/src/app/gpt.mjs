@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 
+
 let responses = []
 
 const openai = new OpenAI({
@@ -7,10 +8,10 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
-async function gptTrip(country) {
+async function gptTrip(country, tripTime) {
   const itinerary  = await openai.chat.completions.create({
     messages: [
-      { role: 'user', content: `"Itinerary": "Give the itinerary for a trip in ${country} "`},
+      { role: 'user', content: `"Itinerary": "Give the itinerary for a trip in ${country} for ${tripTime} than a week. "`},
       // { role: 'user', content: `"Basic Information": "Give the Basic Information about ${country} "`}
     ],
     model: "gpt-3.5-turbo",
@@ -20,7 +21,7 @@ async function gptTrip(country) {
   
   const info = await openai.chat.completions.create({
     messages: [
-      { role: 'user', content: `" Information": "Give some cultural information about ${country} "`}
+      { role: 'user', content: `" Information": "Give some cultural information about ${country}. Make it 3 numbered bullet points"`}
     ],
     model: "gpt-3.5-turbo",
   });
@@ -29,12 +30,18 @@ async function gptTrip(country) {
 
   const suggest = await openai.chat.completions.create({
     messages: [
-      { role: 'user', content: `" Suggestions": "Give some suggestions for sustainable travel to and while in ${country} "`}
+      { role: 'user', content: `" Suggestions": "Give some 3 suggestions for sustainable travel to and while in ${country}. In numbered Bullet point format."`}
     ],
     model: "gpt-3.5-turbo",
   });
-  console.log(suggest.choices[0].message.content)
+  const food = await openai.chat.completions.create({
+    messages: [
+      { role: 'user', content: `" Suggestions": "Give me 3 food recommendations in ${country}. In numbered bullet point format"`}
+    ],
+    model: "gpt-3.5-turbo",
+  });
   responses.push(suggest.choices[0].message.content)
+  responses.push(food.choices[0].message.content)
   return responses
 }
 
