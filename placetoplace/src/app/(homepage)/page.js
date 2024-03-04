@@ -2,13 +2,19 @@
 
 import React, { useState, useEffect } from 'react';
 import Typewriter from 'typewriter-effect';
+import Randomize from '../randomize/page';
+import CustomPage from '@/app/custom/page';
 import styles from '../(styles)/Home.modules.css'
 
 const Home = () => {
+  const [isRandomPage, setIsRandomPage] = useState(false)
+  const [isCustomPage, setIsCustomPage] = useState(false)
   return (
     <div className={styles.container}>
       <div className="bg-blue-500 text-white p-4 titleContainer">
-        <h1>Place to Place</h1>
+      <img src={"https://i.pinimg.com/originals/ab/3d/7e/ab3d7e1fdf17638f541bec0bd176cb75.jpg"} alt="Logo" width={"40px"} height={"40px"}/>
+
+
         <svg
           className={styles.sidebarToggle} // Apply your CSS module class
           viewBox="0 0 24 24"
@@ -38,14 +44,40 @@ const Home = () => {
           />
         </div>
         <div className="mt-4">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+          <button 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+            onClick={()=> {
+              setIsRandomPage(!isRandomPage);
+              setIsCustomPage(false);
+            }}  
+          >
             Pick for me
           </button>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={()=> {
+              setIsCustomPage(!isCustomPage);
+              setIsRandomPage(false);
+            }}  
+          >
             Plan my trip
           </button>
         </div>
       </div>  
+      {/* Page for planners */}
+      {/* Logic 
+      On button click render specific page */}
+      {isRandomPage && (
+        <div>
+            <Randomize/>
+        </div>
+      )}
+      {isCustomPage && (
+        <div>
+            <CustomPage/>
+        </div>
+      )}
+
     </div>
   );
 }
