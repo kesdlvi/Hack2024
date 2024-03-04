@@ -1,15 +1,60 @@
+body {
+    background-color: black;
+}
+
 .img {
     border-radius: 20px;
-    padding: none;
+    padding: 5px;
     width: 200px; 
     height: 200px;
     display:flex;
 }
 
-.regions{
+.all {
+    border-radius: 20px;
+    width: 600px; 
+    height: 230px;
     display:flex;
 }
 
+.top-region{
+    padding: 5px;
+    padding-left: 450px;
+    display:flex;
+}
+.middle-region{
+    padding-left: 450px;
+    display:flex;
+}
+.bottom-region{
+    padding-left: 450px;
+    display:flex;
+}
+/* .names{
+    display:flex;
+} */
+
 .region-filter{
     display: flex;
-} 
+}
+.page-title {
+    font-size: 30px;
+    padding-left: 600px;
+}
+
+.names {
+    display: flex;
+    padding-left: 460px;
+}
+
+.space1 {
+    padding-left: 165px;
+}
+
+.space2 {
+    padding-left: 153px;
+}
+
+.space3 {
+    padding-left: 90px;
+}
